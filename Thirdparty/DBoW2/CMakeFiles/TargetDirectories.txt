@@ -1,0 +1,3 @@
+/home/romina/Documents/proyecto_grado/git/ORB_SLAM2/Thirdparty/DBoW2/CMakeFiles/rebuild_cache.dir
+/home/romina/Documents/proyecto_grado/git/ORB_SLAM2/Thirdparty/DBoW2/CMakeFiles/edit_cache.dir
+/home/romina/Documents/proyecto_grado/git/ORB_SLAM2/Thirdparty/DBoW2/CMakeFiles/DBoW2.dir
