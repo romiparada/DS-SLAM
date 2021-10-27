@@ -38,7 +38,7 @@ if(NOT OpenCV_FOUND)
    endif()
 endif()
 
-find_package(Eigen3 3.1.0 REQUIRED)
+# find_package(Eigen3 3.1.0 REQUIRED)
 find_package(Pangolin REQUIRED)
 find_package( PCL 1.7 REQUIRED )
 find_package( octomap REQUIRED )
@@ -60,7 +60,7 @@ ${PROJECT_SOURCE_DIR}/../../../Examples/ROS/ORB_SLAM2_PointMap_SegNetM/libsegmen
 
 set( LIBS 
 ${OpenCV_LIBS} 
-${EIGEN3_LIBS}
+# ${EIGEN3_LIBS}
 ${Pangolin_LIBRARIES}
 ${PCL_LIBRARIES}
 ${OCTOMAP_LIBRARIES}
