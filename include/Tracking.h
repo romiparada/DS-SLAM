@@ -54,6 +54,8 @@
 #ifndef TRACKING_H
 #define TRACKING_H
 
+#include <opencv2/imgcodecs/legacy/constants_c.h>
+#include <opencv2/imgproc/types_c.h>
 #include "Frame.h"
 #include "ORBextractor.h"
 #include "Initializer.h"

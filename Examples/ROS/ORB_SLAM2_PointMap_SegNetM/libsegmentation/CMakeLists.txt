@@ -27,13 +27,14 @@ else()
    message(FATAL_ERROR "The compiler ${CMAKE_CXX_COMPILER} has no C++11 support. Please use a different C++ compiler.")
 endif()
 
-find_package(OpenCV 3.0 QUIET)
-if(NOT OpenCV_FOUND)
-   find_package(OpenCV 2.4.3 QUIET)
-   if(NOT OpenCV_FOUND)
-      message(FATAL_ERROR "OpenCV > 2.4.3 not found.")
-   endif()
-endif()
+# find_package(OpenCV 3.0 QUIET)
+# if(NOT OpenCV_FOUND)
+#    find_package(OpenCV 2.4.3 QUIET)
+#    if(NOT OpenCV_FOUND)
+#       message(FATAL_ERROR "OpenCV > 2.4.3 not found.")
+#    endif()
+# endif()
+find_package(OpenCV 4 REQUIRED)
 
 include_directories(
 ${PROJECT_SOURCE_DIR}
