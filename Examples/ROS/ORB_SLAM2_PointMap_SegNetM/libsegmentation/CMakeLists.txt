@@ -37,8 +37,8 @@ endif()
 
 include_directories(
 ${PROJECT_SOURCE_DIR}
-${PROJECT_SOURCE_DIR}/../caffe-segnet-cudnn5/include
-${PROJECT_SOURCE_DIR}/../caffe-segnet-cudnn5/build/include
+$ENV{Caffe_Segnet_PATH}/include
+$ENV{Caffe_Segnet_PATH}/build/include
 /usr/local/include  
 /usr/local/cuda/include
 /usr/include
@@ -47,8 +47,8 @@ ${PROJECT_SOURCE_DIR}/../caffe-segnet-cudnn5/build/include
 add_library(segmentation SHARED ${SRC_LIST}) 
 target_link_libraries(${PROJECT_NAME}
 ${OpenCV_LIBS}
-${PROJECT_SOURCE_DIR}/../caffe-segnet-cudnn5/build/lib/libcaffe.so  
-/usr/lib/x86_64-linux-gnu/libglog.so  
+$ENV{Caffe_Segnet_PATH}/build/lib/libcaffe.so  
+glog  
 -lboost_system
 )
 

@@ -44,8 +44,8 @@ ${EIGEN3_INCLUDE_DIR}
 ${Pangolin_INCLUDE_DIRS}
 ${PCL_INCLUDE_DIRS}
 ${OpenCV_INCLUDE_DIRS}
-${PROJECT_SOURCE_DIR}/Examples/ROS/ORB_SLAM2_PointMap_SegNetM/caffe-segnet-cudnn5/include 
-${PROJECT_SOURCE_DIR}/Examples/ROS/ORB_SLAM2_PointMap_SegNetM/caffe-segnet-cudnn5/build/include
+$ENV{Caffe_Segnet_PATH}/include 
+$ENV{Caffe_Segnet_PATH}/build/include
 /usr/local/include  
 /usr/local/cuda/include
 /usr/include  
@@ -53,7 +53,7 @@ ${PROJECT_SOURCE_DIR}/Examples/ROS/ORB_SLAM2_PointMap_SegNetM/libsegmentation
 ${catkin_INCLUDE_DIRS}
 )
 
-#set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/lib)
+# set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/lib)
 add_library(${PROJECT_NAME} SHARED
 src/Camera.cc
 src/System.cc
@@ -87,8 +87,8 @@ ${Pangolin_LIBRARIES}
 ${PCL_LIBRARIES}
 ${PROJECT_SOURCE_DIR}/Thirdparty/DBoW2/lib/libDBoW2.so
 ${PROJECT_SOURCE_DIR}/Thirdparty/g2o/lib/libg2o.so
-${PROJECT_SOURCE_DIR}/Examples/ROS/ORB_SLAM2_PointMap_SegNetM/caffe-segnet-cudnn5/build/lib/libcaffe.so  
-/usr/lib/x86_64-linux-gnu/libglog.so  
+$ENV{Caffe_Segnet_PATH}/build/lib/libcaffe.so  
+glog  
 -lboost_system
 ${PROJECT_SOURCE_DIR}/Examples/ROS/ORB_SLAM2_PointMap_SegNetM/libsegmentation/build/libsegmentation.so
 ${catkin_LIBRARIES}
