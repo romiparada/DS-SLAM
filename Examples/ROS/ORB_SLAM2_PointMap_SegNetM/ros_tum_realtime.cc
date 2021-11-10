@@ -195,9 +195,22 @@ int main(int argc, char **argv)
     cout << "mean segmentation time =" << segmentationTime/nImages<<  endl;
    
     // Save camera trajectory
-    SLAM.SaveTrajectoryTUM("CameraTrajectory.txt");
-    SLAM.SaveKeyFrameTrajectoryTUM("KeyFrameTrajectory.txt");	
+    string results_path="";
+    nh.getParam("results_path", results_path);
+    SLAM.SaveTrajectoryTUM(results_path+"CameraTrajectory.txt");
+    SLAM.SaveKeyFrameTrajectoryTUM(results_path+"KeyFrameTrajectory.txt");	
     
+    // Save times
+    std::ofstream out(results_path+"times.txt");
+    std::streambuf *coutbuf = std::cout.rdbuf();
+    std::cout.rdbuf(out.rdbuf());
+    cout << "median tracking time: " << vTimesTrack[nImages/2] << endl;
+    cout << "mean tracking time: " << totaltime/nImages << endl;
+    cout << "mean orb extract time =" << orbTotalTime/nImages <<  endl;
+    cout << "mean moving detection time =" << movingTotalTime/nImages<<  endl;
+    cout << "mean segmentation time =" << segmentationTime/nImages<<  endl;
+    std::cout.rdbuf(coutbuf);
+
     ros::shutdown();
     return 0;
 }

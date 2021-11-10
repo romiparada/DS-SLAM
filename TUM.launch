@@ -1,0 +1,24 @@
+<launch>  
+
+	<!-- arguments -->
+	<arg name="settings" />
+	<arg name="sequence" />
+	<arg name="association" />
+
+	<arg name="vocabulary" default="$(find ORB_SLAM2_PointMap_SegNetM)/../../../Vocabulary/ORBvoc.txt" />
+	<arg name="prototxt" default="$(find ORB_SLAM2_PointMap_SegNetM)/prototxts/segnet_pascal.prototxt" />
+	<arg name="caffemodel" default="$(find ORB_SLAM2_PointMap_SegNetM)/models/segnet_pascal.caffemodel" />
+	<arg name="pascal" default="$(find ORB_SLAM2_PointMap_SegNetM)/tools/pascal.png" />
+	
+	<arg name="results_path" />
+	<param name="results_path" type="string" value="$(arg results_path)" />
+
+	<!-- orb slam Usage: TUM path_to_vocabulary path_to_settings path_to_sequence path_to_association path_to_prototxt path_to_caffemodel path_to_pascal.png -->
+	<node pkg="ORB_SLAM2_PointMap_SegNetM" name="TUM" type="TUM" args="$(arg vocabulary) $(arg settings) $(arg sequence) $(arg association) $(arg prototxt) $(arg caffemodel) $(arg pascal)" output="screen" required="true" />
+
+	<!-- Run other launch file -->
+    	<include file="$(find ORB_SLAM2_PointMap_SegNetM)/launch/Octomap.launch" />
+	<include file="$(find ORB_SLAM2_PointMap_SegNetM)/launch/transform.launch" />
+	<!-- <node pkg="rviz" name="rviz" type="rviz" /> --> 
+	
+</launch>
