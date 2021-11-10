@@ -1,4 +1,4 @@
-export Caffe_Segnet_PATH="~/catkin_ws/DS-SLAM/Examples/ROS/ORB_SLAM2_PointMap_SegNetM/caffe-segnet-cudnn7"
+export  ROS_PACKAGE_PATH=${ROS_PACKAGE_PATH}:"~/catkin_ws/src/DS-SLAM/Examples/ROS/ORB_SLAM2_PointMap_SegNetM"
 
 echo "Configuring and building Thirdparty/DBoW2 ..."
 

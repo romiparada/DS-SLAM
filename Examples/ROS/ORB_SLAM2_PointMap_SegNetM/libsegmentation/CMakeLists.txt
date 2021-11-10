@@ -34,11 +34,11 @@ if(NOT OpenCV_FOUND)
       message(FATAL_ERROR "OpenCV > 2.4.3 not found.")
    endif()
 endif()
+find_package(Caffe REQUIRED)
 
 include_directories(
 ${PROJECT_SOURCE_DIR}
-$ENV{Caffe_Segnet_PATH}/include
-$ENV{Caffe_Segnet_PATH}/build/include
+${Caffe_INCLUDE_DIRS}
 /usr/local/include  
 /usr/local/cuda/include
 /usr/include
@@ -47,7 +47,7 @@ $ENV{Caffe_Segnet_PATH}/build/include
 add_library(segmentation SHARED ${SRC_LIST}) 
 target_link_libraries(${PROJECT_NAME}
 ${OpenCV_LIBS}
-$ENV{Caffe_Segnet_PATH}/build/lib/libcaffe.so  
+${Caffe_LIBRARIES}
 glog  
 -lboost_system
 )

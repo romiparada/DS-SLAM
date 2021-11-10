@@ -42,6 +42,7 @@ find_package(Eigen3 3.1.0 REQUIRED)
 find_package(Pangolin REQUIRED)
 find_package( PCL 1.7 REQUIRED )
 find_package( octomap REQUIRED )
+find_package(Caffe REQUIRED)
 
 include_directories(
 ${PROJECT_SOURCE_DIR}
@@ -50,8 +51,7 @@ ${PROJECT_SOURCE_DIR}/../../../include
 ${Pangolin_INCLUDE_DIRS}
 ${PCL_INCLUDE_DIRS}
 ${OCTOMAP_INCLUDE_DIRS}
-$ENV{Caffe_Segnet_PATH}/include 
-$ENV{Caffe_Segnet_PATH}/build/include
+${Caffe_INCLUDE_DIRS}
 /usr/local/include  
 /usr/local/cuda/include  
 /usr/include
@@ -67,7 +67,7 @@ ${OCTOMAP_LIBRARIES}
 ${PROJECT_SOURCE_DIR}/../../../Thirdparty/DBoW2/lib/libDBoW2.so
 ${PROJECT_SOURCE_DIR}/../../../Thirdparty/g2o/lib/libg2o.so
 ${PROJECT_SOURCE_DIR}/../../../build/libORB_SLAM2_PointMap_SegNetM.so
-$ENV{Caffe_Segnet_PATH}/build/lib/libcaffe.so  
+${Caffe_LIBRARIES}  
 glog  
 -lboost_system
 ${PROJECT_SOURCE_DIR}/../../../Examples/ROS/ORB_SLAM2_PointMap_SegNetM/libsegmentation/build/libsegmentation.so
