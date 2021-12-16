@@ -3,20 +3,26 @@ ASSOCIATE_URL=https://svncvpr.in.tum.de/cvpr-ros-pkg/trunk/rgbd_benchmark/rgbd_b
 
 CURRENT_PATH=$PWD
 NODE_PATH=${CURRENT_PATH}/Examples/ROS/ORB_SLAM2_PointMap_SegNetM
+DATA_PATH=$HOME
 
 getData () {
   wget ${DATA_URL}$2/$1
 }
 
 export ROS_PACKAGE_PATH=${ROS_PACKAGE_PATH}:${NODE_PATH}
-cd ${NODE_PATH}
+cd $DATA_PATH
 
-mkdir -p data
+mkdir -p data/TUM
+
 cd data
+DATA_PATH=$DATA_PATH/data
 
 [ ! -e associate.py ] && wget ${ASSOCIATE_URL}
 
+cd TUM
+
 sequences=("desk_with_person" "sitting_static" "sitting_xyz" "sitting_halfsphere" "sitting_rpy" "walking_static" "walking_xyz" "walking_halfsphere" "walking_rpy")
+
 
 index=0
 if [ $1 ]
@@ -47,10 +53,16 @@ then
   rm ${sequence}.tgz
 fi
 
-python associate.py ${sequence}/rgb.txt ${sequence}/depth.txt > ${sequence}/associate.txt
+python $DATA_PATH/associate.py ${sequence}/rgb.txt ${sequence}/depth.txt > ${sequence}/associate.txt
 
-mkdir -p ${sequence}/results
+
 
 cd ${CURRENT_PATH} 
+mkdir -p data/TUM/${sequence}/
 
-roslaunch TUM.launch settings:=${NODE_PATH}/TUM${settings}.yaml sequence:=${NODE_PATH}/data/${sequence}/ association:=${NODE_PATH}/data/${sequence}/associate.txt results_path:=${NODE_PATH}/data/${sequence}/results/
+settings=${NODE_PATH}/TUM${settings}.yaml 
+association=${DATA_PATH}/TUM/${sequence}/associate.txt 
+results_path=${CURRENT_PATH}/data/TUM/${sequence}/results/
+sequence=${DATA_PATH}/TUM/${sequence}/ 
+
+roslaunch TUM.launch settings:=${settings} sequence:=${sequence} association:=${association} results_path:=${results_path}

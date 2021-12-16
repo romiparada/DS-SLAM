@@ -3,10 +3,9 @@ RPE_URL=https://svncvpr.in.tum.de/cvpr-ros-pkg/trunk/rgbd_benchmark/rgbd_benchma
 
 CURRENT_PATH=$PWD
 NODE_PATH=${CURRENT_PATH}/Examples/ROS/ORB_SLAM2_PointMap_SegNetM
-cd $NODE_PATH
+DATA_PATH=$HOME/data
 
-mkdir -p data
-cd data
+cd $DATA_PATH
 
 [ ! -e evaluate_ate.py ] && wget ${ATE_URL}
 [ ! -e evaluate_rpe.py ] && wget ${RPE_URL}
@@ -36,7 +35,13 @@ fi
 
 sequence=rgbd_dataset_freiburg${settings}_${sequences[$index]}
 
-cd ${sequence}/results 
+cd $CURRENT_PATH/data/TUM/${sequence}
+mkdir -p evaluation
+cd evaluation
 
-python ../../evaluate_ate.py ../groundtruth.txt CameraTrajectory.txt --verbose --plot ate_plot.png > ate_values.txt 
-python ../../evaluate_rpe.py ../groundtruth.txt CameraTrajectory.txt --verbose > rpe_values.txt  
+trajectory=../results/CameraTrajectory.txt
+groundtruth=$DATA_PATH/TUM/$sequence/groundtruth.txt
+
+python $DATA_PATH/evaluate_ate.py $groundtruth $trajectory --verbose --plot ate_plot.png > ate_values.txt 
+python $DATA_PATH/evaluate_rpe.py $groundtruth $trajectory --verbose > rpe_values.txt  
+python $CURRENT_PATH/evaluate_improvement.py "/home/nvidia/ORB_SLAM2/data/TUM/$sequence" "$CURRENT_PATH/data/TUM/$sequence" > improvement_values.txt
